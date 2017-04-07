@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CloudData, CloudOptions } from 'angular-tag-cloud-module';
 
+//import { HomeListComponent } from '../home-list/home-list.component';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

@@ -23,7 +23,7 @@ export class User{
     }
 
     getName(){
-        return name;
+        return this.name;
     }
 
     setName(name: string){

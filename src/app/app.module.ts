@@ -13,6 +13,7 @@ import { TagCloudModule } from 'angular-tag-cloud-module';
 import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 import { RatingModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
+import { CarouselModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -38,7 +39,7 @@ import { HomeListComponent } from './components/home-list/home-list.component';
     SearchComponent,
     HomeComponent,
     RightMenuComponent,
-    HomeListComponent
+    HomeListComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +55,8 @@ import { HomeListComponent } from './components/home-list/home-list.component';
     TagCloudModule,
     Ng2AutoCompleteModule,
     RatingModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    CarouselModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,9 @@
+<div *ngFor="let user of users">
+    <md-card>
+        <md-card-title-group>
+            <img md-card-sm-image [src]="this.images[0].getUrl()">
+            <md-card-title>{{user.getName()}}</md-card-title>
+            <md-card-subtitle>{{user.getRole()}}</md-card-subtitle>
+        </md-card-title-group>
+    </md-card>
+</div>

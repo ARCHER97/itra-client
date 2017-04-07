@@ -39,4 +39,9 @@ export class ProfileComponent{
   }
 
   setSelectedImage1(){ }
+
+  isActive(num: number){
+    if(num == 1) return true
+    else return false
+  }
 }
