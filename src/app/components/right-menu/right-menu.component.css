@@ -1,0 +1,7 @@
+.right-menu{ 
+    background:#222222;        
+    -moz-border-radius: 20px; 
+    -webkit-border-radius: 20px;
+    border: solid red 2px;
+    padding: 20px;
+}

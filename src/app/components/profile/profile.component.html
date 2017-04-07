@@ -1,0 +1,68 @@
+<div class="col-sm-12">
+  <div class="col-sm-6">
+    <img src="http://res.cloudinary.com/mycloudfortask5/image/upload/c_scale,w_600/HK9d09p_j8wmhw.jpg"
+      width='100%' (click)="setSelectedImage1()"/>
+  </div>
+
+  <div class="col-sm-6">
+    <div>
+      name: {{profile.getName()}};
+    </div>
+    <div>
+      yearOfBirth: {{profile.getYearOfBirth()}};
+    </div>
+    <div>
+      weight: {{profile.getWeight()}};
+    </div>
+    <div>
+      growth: {{profile.getGrowth()}};
+    </div>
+    <div>
+      sex: {{profile.getSex()}};
+    </div>
+    <div>
+      types of photo: {{profile.gettypesOfPhotography()}};
+    </div>
+  </div>
+</div>
+<div class="col-sm-12">
+  <br>
+</div>
+
+<div *ngIf="globalSettings.activeImagesView == 'tile'" class="col-sm-12">
+  <div class="panel panel-success">
+    <div class="panel-body">
+      <div class='list-group' dnd-sortable-container [sortableData]="listImages">
+        <div *ngFor="let image of listImages; let i = index" [ngClass]="['list-group-item','col-sm-6']"
+            dnd-sortable [sortableIndex]="i" (drop)="dropImage($event, iamege)" (click)="setSelectedImage(image)"
+            (click)="staticModal.show()">
+          <img [src]="image.getUrl()" width="100%" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="globalSettings.activeImagesView == 'table'" class="col-sm-12">
+  <div class="panel panel-success">
+    <div class="panel-body">
+      <table class='list-group' dnd-sortable-container [sortableData]="listImages"> 
+          <tr *ngFor="let image of listImages; let i = index" dnd-sortable [sortableIndex]="i" [ngClass]="['list-group-item', 'images-table']"
+               (drop)="dropImage($event, iamege)" (click)="setSelectedImage(image)" (click)="staticModal.show()">
+              <td><img [src]="image.getUrl()" width="100%" /></td> 
+          </tr>
+      </table>
+    </div>
+  </div>
+</div>
+ 
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+
+  <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+    <span class='glyphicon glyphicon-remove'></span>
+  </button>
+
+  <app-image></app-image>
+
+</div>

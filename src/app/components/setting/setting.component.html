@@ -1,0 +1,37 @@
+<mz-sidenav
+    [id]="'sidenav-settings'"
+    [collapseButtonId]="'btn-sidenav-settings'"
+    [edge]="'left'">
+
+  <div class="sidenav">
+    <mz-sidenav-header>
+      View:
+    </mz-sidenav-header>
+    <mz-radio-button-container>
+      <input mz-radio-button [label]="'Dark'" [withGap]="true" id="radio-button-view-1"
+        name="radio-group" type="radio" (click)="selectRadio(false)" checked = true>
+    </mz-radio-button-container>
+    <mz-radio-button-container>
+      <input mz-radio-button [label]="'White'" [withGap]="true" id="radio-button-view-2"
+        name="radio-group" type="radio" (click)="selectRadio(true)">
+    </mz-radio-button-container>
+
+
+    <mz-sidenav-header>
+      Images view:
+    </mz-sidenav-header>
+    <mz-radio-button-container>
+      <input mz-radio-button [label]="'tile'" [withGap]="true" id="radio-button-images-1"
+        name="radio-group-images" type="radio" (click)="selectRadioImage('tile')" checked = true>
+    </mz-radio-button-container>
+    <mz-radio-button-container>
+      <input mz-radio-button [label]="'table'" [withGap]="true" id="radio-button-images-2"
+        name="radio-group-images" type="radio" (click)="selectRadioImage('table')">
+    </mz-radio-button-container>
+    <mz-radio-button-container>
+      <input mz-radio-button [label]="'slide'" [withGap]="true" id="radio-button-images-3"
+        name="radio-group-images" type="radio" (click)="selectRadioImage('slide')">
+    </mz-radio-button-container>
+  </div>
+
+</mz-sidenav>

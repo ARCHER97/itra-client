@@ -1,0 +1,16 @@
+
+<div class="col-sm-12" height="10px"></div>
+<div class="col-sm-3"></div>
+<div class="col-sm-6">
+  <img [src]="selectedObjects.image.getUrl()" />
+</div>
+<div class="col-sm-3"></div>
+<div class="col-sm-12">
+  <rating [(ngModel)]="x" max="15" stateOn="glyphicon-ok-sign" stateOff="glyphicon-ok-circle"
+          style="color: #0275d8;"></rating>
+  <b>(<i>Rate:</i> {{x}})</b>
+</div>
+
+<div class="col-sm-12">
+  <p>text</p>
+</div>

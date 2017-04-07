@@ -1,0 +1,12 @@
+.panel-body{
+    background-color: beige;
+}
+
+.list-group-item{
+    background-color: darkgrey;
+}
+
+.images-table{
+    vertical-align: bottom;
+    text-align: -webkit-center;
+}

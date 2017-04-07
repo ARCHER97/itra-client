@@ -1,0 +1,31 @@
+<nav [ngClass]= "{'navbar navbar-inverse': !globalSettings.activeView, 
+    'navbar navbar-default': globalSettings.activeView}">
+
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/">Portfl</a>
+    </div>
+
+    <ul class="nav navbar-nav">
+      <li class="active"><a routerLink="/">Home</a></li>
+      <li dropdown>
+        <a dropdownToggle class="dropdown-toggle" routerLink="/">Page 1<span class="caret"></span></a>
+        <ul *dropdownMenu class="dropdown-menu" role="menu">
+          <li role="menuitem"><a class="dropdown-item" routerLink="/">Action</a></li>
+          <li role="menuitem"><a class="dropdown-item" routerLink="/">Another action</a></li>
+          <li role="menuitem"><a class="dropdown-item" routerLink="/">Something else here</a></li>
+          <li class="divider dropdown-divider"></li>
+          <li role="menuitem"><a class="dropdown-item" routerLink="/">Separated link</a></li>
+        </ul>
+      </li>
+    </ul>
+    
+    <ul class="nav navbar-nav navbar-right">
+      <li><a routerLink="/admin">Adminka</a></li>
+      <li><a routerLink="/profile">Profile</a></li>
+      <li><a routerLink="/"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a routerLink="/reg"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+<br>

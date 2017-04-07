@@ -1,0 +1,29 @@
+<mz-sidenav
+    [id]="'sidenav-search'"
+    [collapseButtonId]="'btn-sidenav-search'"
+    [edge]="'right'">
+
+  <div class="sidenav">
+    <mz-sidenav-header>
+      Search:
+    </mz-sidenav-header>
+    <md-sidenav #sidenav class="example-sidenav" mode="push">
+      <form class="form-horizontal" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+        <md-input-container class="example-full-width">
+         
+          <input mdInput placeholder="enter text"  [(ngModel)]="selectVal"
+              ng2-auto-complete
+              formControlName="continent"
+              [source]="continents"
+              [list-formatter]="autocompleListFormatter"
+              value-property-name="id"
+              display-property-name="name">
+        
+        </md-input-container>
+
+      </form>
+       <button type="submit">Submit</button>
+    </md-sidenav>
+  </div>
+
+</mz-sidenav>
