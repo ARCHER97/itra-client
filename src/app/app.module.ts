@@ -26,6 +26,8 @@ import { SearchComponent } from './components/search/search.component';
 import { HomeComponent } from './components/home/home.component';
 import { RightMenuComponent } from './components/right-menu/right-menu.component';
 import { HomeListComponent } from './components/home-list/home-list.component';
+import { ImageService } from './services/image.service';
+import { ProfileService } from './services/profile.service'; 
 
 @NgModule({
   declarations: [
@@ -58,7 +60,10 @@ import { HomeListComponent } from './components/home-list/home-list.component';
     ModalModule.forRoot(),
     CarouselModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    ImageService,
+    ProfileService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

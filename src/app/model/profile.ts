@@ -4,7 +4,7 @@ export class Profile {
                 private name: string,
                 private yearOfBirth: number,
                 private weight: number,
-                private growth: number,
+                private height: number,
                 private sex: string,
                 private typesOfPhotography: string){ }
 
@@ -41,11 +41,11 @@ export class Profile {
     }
 
     getGrowth(){
-        return this.growth;
+        return this.height;
     }
 
-    setGrowth(growth: number){
-        this.growth = growth;
+    setGrowth(height: number){
+        this.height = height;
     }
 
     getSex(){

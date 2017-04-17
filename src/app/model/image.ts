@@ -1,4 +1,5 @@
 export class Image {
+    private idUser: number;
     constructor(private id: number,
                 private position: number,
                 private url: string){ }
@@ -25,5 +26,13 @@ export class Image {
 
     setUrl(url: string){
         this.url = url;
+    }
+
+    getIdUser(){
+        return this.idUser;
+    }
+
+    setIdUser(IdUser: number){
+        this.idUser =IdUser;
     }
 }

@@ -4,7 +4,9 @@ import { MdDialog } from '@angular/material';
 import { Profile } from '../../model/profile';
 import { Image } from '../../model/Image';
 import { globalSettings } from '../../global/global-settings';
-import { selectedObjects } from '../../global/selected-objects'
+import { selectedObjects } from '../../global/selected-objects';
+import { ImageService } from '../../services/image.service';  
+import { ProfileService } from '../../services/profile.service'; 
 
 @Component({
   selector: 'app-profile',
@@ -14,19 +16,24 @@ import { selectedObjects } from '../../global/selected-objects'
 export class ProfileComponent{
 
   globalSettings = globalSettings;
-  profile: Profile;
-  listImages:Array<Image>;
+  profile: Profile; //= new Profile(1, 'Sasha Gray1', 19881, 1681, 601, 'woman1', 'all1');
+  listImages: Array<Image>;
   selectedObjects = selectedObjects;
 
-  constructor( public dialog: MdDialog ) {
-    this.listImages = [
-      new Image(1,1,'http://res.cloudinary.com/mycloudfortask5/image/upload/images_prygfu.jpg'),
-      new Image(2,2,'http://res.cloudinary.com/mycloudfortask5/image/upload/images_o0z5op.jpg'),
-      new Image(3,3,'http://res.cloudinary.com/mycloudfortask5/image/upload/images_rzaiec.jpg'),
-      new Image(4,4,'http://res.cloudinary.com/mycloudfortask5/image/upload/images_naw0e9.jpg'),
-      new Image(5,5,'http://res.cloudinary.com/mycloudfortask5/image/upload/images_pnmy0h.jpg')
-      ];
-    this.profile = new Profile(1, 'Sasha Gray', 1988, 168, 60, 'woman', 'all');
+  constructor(private profileService: ProfileService, 
+              private imageService: ImageService, 
+              public dialog: MdDialog) {
+
+    this.imageService.getAllImageOfUser(1).then(res => {
+      this.listImages = res;  
+    });
+
+    this.profile = new Profile(1, 'not found', 0, 0, 0, 'not found', 'not found');
+
+    this.profileService.getProfileByUserId(1).then(res => {
+      this.profile = res;
+    });
+    
   }
 
   public dropImage(event: DragEvent, image: any){
