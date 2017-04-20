@@ -26,8 +26,12 @@ import { SearchComponent } from './components/search/search.component';
 import { HomeComponent } from './components/home/home.component';
 import { RightMenuComponent } from './components/right-menu/right-menu.component';
 import { HomeListComponent } from './components/home-list/home-list.component';
+import { ProfileViewComponent } from './components/profile-view/profile-view.component';
 import { ImageService } from './services/image.service';
 import { ProfileService } from './services/profile.service'; 
+import { AuthService } from './services/auth.service';
+import { TopService } from './services/top.service';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +46,8 @@ import { ProfileService } from './services/profile.service';
     HomeComponent,
     RightMenuComponent,
     HomeListComponent,
+    ProfileViewComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +68,9 @@ import { ProfileService } from './services/profile.service';
   ],
   providers: [
     ImageService,
-    ProfileService
+    ProfileService,
+    AuthService,
+    TopService
   ],
   bootstrap: [AppComponent]
 })

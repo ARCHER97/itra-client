@@ -6,19 +6,16 @@ import { Profile } from '../../model/profile';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class RegistrationComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   user: User;
-
-  profile: Profile;
   
   constructor(private authService: AuthService, private router :Router) { 
     this.user = new User("","");
-    this.profile = new Profile(1, "test-name", 1997, 180, 60, "man", "woman");
   }
 
   submit(){

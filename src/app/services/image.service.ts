@@ -27,7 +27,7 @@ export class ImageService {
       .catch(this.handleError);
   }
 
-  public getAllImageOfUser(id: number): Promise<Array<Image>>{
+  public getAllImageOfProfile(id: number): Promise<Array<Image>>{
     return this.http.get(this.baseUrl+'getAll/'+id)
       .toPromise()
       .then(res => {

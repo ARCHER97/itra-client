@@ -1,7 +1,7 @@
 class GlobalSettings {
     activeView: any;
     activeImagesView: any;
-    
+    authStatus: any;
     constructor(){
         this.activeView=false;
         this.activeImagesView="tile";

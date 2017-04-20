@@ -1,0 +1,15 @@
+<div style="padding: 20px;">
+  <div>
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="login" [(ngModel)]="user.login">
+    </md-input-container>
+  </div>
+  <div>
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="password" [(ngModel)]="user.password">
+    </md-input-container>
+  </div>
+  <button class="btn waves-effect waves-light" type="submit" name="action" (click)="submit()">Submit
+    <i class="material-icons right">send</i>
+  </button>
+</div>

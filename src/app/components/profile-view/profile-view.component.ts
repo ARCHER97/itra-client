@@ -8,12 +8,13 @@ import { selectedObjects } from '../../global/selected-objects';
 import { ImageService } from '../../services/image.service';  
 import { ProfileService } from '../../services/profile.service'; 
 
+
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-profile-view',
+  templateUrl: './profile-view.component.html',
+  styleUrls: ['./profile-view.component.css']
 })
-export class ProfileComponent{
+export class ProfileViewComponent {
 
   globalSettings = globalSettings;
   profile: Profile; //= new Profile(1, 'Sasha Gray1', 19881, 1681, 601, 'woman1', 'all1');
@@ -35,11 +36,7 @@ export class ProfileComponent{
     });
     
   }
-
-  public dropImage(event: DragEvent, image: any){
-    console.log(event)
-  }
-
+  
   setSelectedImage(image: Image){
     selectedObjects.image = image;
     console.log(selectedObjects.image.getUrl())
@@ -51,4 +48,5 @@ export class ProfileComponent{
     if(num == 1) return true
     else return false
   }
+
 }

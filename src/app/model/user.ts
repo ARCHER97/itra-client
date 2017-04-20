@@ -1,10 +1,11 @@
 export class User{
-    constructor(private id :number,
-                private role: string,
-                private name: string,
-                private yearOfBirth: number,
-                private growth: number,
-                private weight: number){ }
+    
+    private id: number;
+    
+    private role: string;
+
+    constructor(private login: string,
+                private password: string){ }
     
     getId(){
         return this.id;
@@ -14,6 +15,22 @@ export class User{
         this.id = id;
     }
 
+    getLogin(){
+        return this.login;
+    }
+
+    setLogin(login: string){
+        this.login = login;
+    }
+
+    getPassword(){
+        return this.password;
+    }
+
+    setPassword(password: string){
+        this.password = password;
+    }
+    
     getRole(){
         return this.role;
     }
@@ -22,35 +39,5 @@ export class User{
         this.role = role;
     }
 
-    getName(){
-        return this.name;
-    }
-
-    setName(name: string){
-        this.name = name;
-    }
-
-    getYearOfBirth(){
-        return this.yearOfBirth;
-    }
-
-    setYearOfBirth(yearOfBirth: number){
-        this.yearOfBirth = yearOfBirth;
-    }
-
-    getGrowth(){
-        return this.growth;
-    }
-
-    setGrowth(growth: number){
-        this.growth = growth;
-    }
-
-    getWeight(){
-        return this.weight;
-    }
-
-    setWrowth(weight: number){
-        this.weight = weight;
-    }
+   
 }
