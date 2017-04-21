@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <form>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchValue"
+            [ngModelOptions]="{standalone: true}">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit" (click)="search()">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>  
+  </div>
+  <div class="panel-body">
+    settings of search
+  </div>
+</div>
+
+<app-profile-list></app-profile-list>

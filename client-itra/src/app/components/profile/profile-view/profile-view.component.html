@@ -1,0 +1,63 @@
+<div class="header-profile">
+  <div [ngClass]="'header-image'">
+    <img [src]="images[0].getUrl()" class="img-circle" height="150">
+  </div>
+  <div [ngClass]="'header-info'">
+    Name: {{profile.getName()}} <br>
+    Year of birth: {{profile.getYearOfBirth()}} <br>
+    Weight: {{profile.getWeight()}} <br>
+    Height: {{profile.getHeight()}} <br>
+    Sex: {{profile.getSex()}} <br>
+    Types of photography: {{profile.getTypesOfPhotography()}}
+  </div>
+  <div style="clear: both;"></div>
+  <div style="margin-left: 20px;">
+    <rating [(ngModel)]="profile.rating" [max]="10" [readonly]="false"></rating> 
+  </div>
+</div>
+
+<tabset  [justified]="true">
+
+  <tab heading="Table">
+    <template tabHeading>
+        <img src="http://res.cloudinary.com/mycloudfortask5/image/upload/table_k9bhqo.ico" height="20px" />
+    </template>
+    <div [ngClass]="['col-sm-12','image-table-container']" >
+      <div *ngFor="let image of images; let i = index;" class="col-sm-12" >
+        <div class="col-sm-12"><img [src]="image.getUrl()" class="image-table" width="80%" /></div>
+      </div>
+    </div>
+  </tab>
+
+  <tab heading="Plitka">
+    <template tabHeading>
+        <img src="http://res.cloudinary.com/mycloudfortask5/image/upload/plitka_quszxl.ico" height="20px" />
+    </template>
+    <div [ngClass]="['col-sm-12','image-plitka-container']" >
+      <div [ngClass]="['col-sm-6','image-plitka-div']">
+        <div *ngFor="let image of images; let i = index;" [ngClass]="['col-sm-12','image-plitka-div']">
+          <img *ngIf="checkCenterArray(i)" [src]="image.getUrl()" class="image-plitka" width="100%"/>
+        </div>
+      </div>
+      <div [ngClass]="['col-sm-6','image-plitka-div']">
+        <div *ngFor="let image of images; let i = index;" [ngClass]="['col-sm-12','image-plitka-div']">
+          <img *ngIf="!checkCenterArray(i)" [src]="image.getUrl()" class="image-plitka" width="100%"/>
+        </div>
+      </div>
+    </div>
+  </tab>
+
+  <tab heading="Slide">
+    <template tabHeading>
+        <img src="http://res.cloudinary.com/mycloudfortask5/image/upload/slide_cam15t.ico" height="20px" />
+    </template>
+    <carousel [ngClass]="'col-sm-12'" >
+      <slide *ngFor="let image of images">
+        <img [src]="image.getUrl()" width="100%">
+      </slide>
+    </carousel>
+  </tab>
+
+</tabset>
+
+

@@ -1,0 +1,44 @@
+.header-profile {
+    padding-top: 20px; 
+    margin-bottom: 20px; 
+}
+
+.header-image {
+    margin-left: 20px;
+    float: left;
+}
+
+.header-info {
+    margin-right: 20px;
+    float: right;
+}
+
+.image-table {  
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.image-table-container {
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;    
+}
+
+.image-plitka {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.image-plitka-div {
+    padding-right: 0;
+    padding-left: 0;  
+    margin-left: 0;
+    margin-right: 0;  
+}
+
+.image-plitka-container {
+    padding-right: 0;
+    padding-left: 0;  
+    margin-left: 0;
+    margin-right: 0;  
+}

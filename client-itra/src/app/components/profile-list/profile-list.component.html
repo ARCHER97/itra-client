@@ -1,0 +1,8 @@
+<div *ngFor="let profile of profilesPreview" class="panel panel-default" (click)="goToProfile(profile.getId())">
+  <div class="panel-body">
+    <span class="title-name"> {{profile.getName()}} </span>
+    <img [src]="profile.getImageInfo().getUrl()" class="img-circle" height="100px">
+    <br>
+    <rating [ngModel]="profile.getRating()" [max]="10" [readonly]="true"></rating>
+  </div>
+</div>
