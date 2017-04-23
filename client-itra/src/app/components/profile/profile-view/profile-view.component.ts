@@ -36,7 +36,6 @@ export class ProfileViewComponent implements OnInit {
     });
     imageService.getImagesByProfileId(this.route.snapshot.params['id']).then(res => {
       this.images = res;
-      this.selectImage = this.images[0];
     });
   }
 
