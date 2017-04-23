@@ -1,0 +1,43 @@
+<form>
+  
+  <div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input id="email" type="text" class="form-control" name="email" placeholder="Email"
+        [(ngModel)]="login">
+  </div>
+
+  <div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+    <input id="password" type="password" class="form-control" name="password" placeholder="Password"
+          [(ngModel)]="password">
+  </div>
+
+  <div class="input-group">
+    <span class="input-group-addon">Name</span>
+    <input id="msg" type="text" class="form-control" name="name" placeholder="Name"
+          [(ngModel)]="profile.name">
+  </div>
+
+  <div class="input-group">
+    <span class="input-group-addon">Birth</span>
+    <input id="msg" type="text" class="form-control" name="yearOfBirth" placeholder="year of birth"
+          [(ngModel)]="profile.yearOfBirth">
+  </div>
+
+  <div class="input-group">
+    <span class="input-group-addon" >Weight</span>
+    <input id="msg" type="text" class="form-control" name="weight" placeholder="weight"
+          [(ngModel)]="profile.weight">
+  </div>
+
+  <div class="input-group">
+    <span class="input-group-addon">Height</span>
+    <input id="msg" type="text" class="form-control" name="height" placeholder="height"
+          [(ngModel)]="profile.height">
+  </div>
+
+  <div class="input-group">
+    <button (click)="singup()">singup</button>
+  </div>  
+
+</form>

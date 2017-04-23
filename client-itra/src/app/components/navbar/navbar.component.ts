@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
+import { navbarStyle } from '../../global/navbarstyle';
 import { authState } from '../../global/authstate';
 
 @Component({
@@ -11,6 +12,7 @@ import { authState } from '../../global/authstate';
 })
 export class NavbarComponent implements OnInit {
 
+  navbarStyle = navbarStyle;
   authState = authState;
   searchValue: string;
 
@@ -26,7 +28,7 @@ export class NavbarComponent implements OnInit {
   }
 
   login(){
-    this.authService.login();
+    this.router.navigate(['/auth']);
   }
 
   logout(){

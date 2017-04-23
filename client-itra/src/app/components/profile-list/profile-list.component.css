@@ -1,14 +1,33 @@
 img{
+    width: 150px;
+    height: 100px;
     float: right;
     margin-right: 10px;
 }
 
 div{
-    background-color: floralwhite;
+    background-color: #ffffff;
 }
 
 .title-name {
     font-weight: bold;
     font-size: 30px;
     text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}
+
+.tags-cloud { 
+    background:#222222;        
+    -moz-border-radius: 20px; 
+    -webkit-border-radius: 20px;
+    border: solid red 2px;
+    margin-bottom: 40px;
+}
+
+.panel-body{
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+.panel-default{
+    border-radius: 10px;
 }

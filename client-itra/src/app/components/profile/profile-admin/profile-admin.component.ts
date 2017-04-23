@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { ProfileService } from '../../../services/profile.service';
 import { ImageService } from '../../../services/image.service';
@@ -13,38 +14,44 @@ import { ImageInfo } from '../../../model/image-info';
   styleUrls: ['./profile-admin.component.css']
 })
 export class ProfileAdminComponent implements OnInit {
+  @ViewChild('imageAdminModal') public imageAdminModal:ModalDirective;
+
   public radioModel: string = 'Table';
 
   profile: Profile;
   
-  images: Array<ImageInfo>;
-  leftImages: Array<ImageInfo>;
-  rightImages: Array<ImageInfo>;
+  images: Array<ImageInfo> = new Array();
+
+  selectImage: ImageInfo = new ImageInfo(0,0,'');
 
   constructor(
     private route: ActivatedRoute,
     private profileService: ProfileService,
     private imageService: ImageService
   ) { 
-    this.profile = profileService.getProfileById(this.route.snapshot.params['id']);
-    this.images = imageService.getImagesByProfileId(this.route.snapshot.params['id']);
-    this.leftImages = new Array();
-    let i = 0;
-    for(; i < this.images.length/2; i++){
-      this.leftImages.push(this.images[i]);
-    }
-    this.rightImages = new Array();
-    for(; i >= this.images.length/2 && i < this.images.length; i++){ 
-      this.rightImages.push(this.images[i]);
-    }
+    profileService.getProfileById(this.route.snapshot.params['id']).then(res => {
+      this.profile = res;
+    });
+    imageService.getImagesByProfileId(this.route.snapshot.params['id']).then(res => {
+      this.images = res;
+    });
   }
 
   ngOnInit() {
   }
 
-  checkCenterArray(i: number){
-    if(i >= this.images.length/2) return true
+  checkTile(i: number){
+    if( (i+1) % 4 == 0) return true
     else return false;
   }
   
+  public showChildModal(image: ImageInfo):void {
+    this.selectImage = image;
+    this.imageAdminModal.show();
+  }
+
+  public hideChildModal():void {
+    this.imageAdminModal.hide();
+  }
+
 }

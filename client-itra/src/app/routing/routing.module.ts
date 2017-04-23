@@ -7,6 +7,8 @@ import { PageNotFoundComponent } from '../components/page-not-found/page-not-fou
 import { SettingsComponent } from '../components/settings/settings.component';
 import { ProfileViewComponent } from '../components/profile/profile-view/profile-view.component';
 import { ProfileAdminComponent } from '../components/profile/profile-admin/profile-admin.component';
+import { AdminkaComponent } from '../components/adminka/adminka.component';
+import { AuthComponent } from '../components/auth/auth/auth.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/profiles-preview', pathMatch: 'full' },
@@ -15,6 +17,8 @@ const appRoutes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'profile/:id', component: ProfileViewComponent },
   { path: 'admin/profile/:id', component: ProfileAdminComponent },
+  { path: 'adminka', component: AdminkaComponent },
+  { path: 'auth', component: AuthComponent },
   { path: 'notfound', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/notfound', pathMatch: 'full' }
 ];

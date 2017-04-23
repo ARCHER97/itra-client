@@ -34,7 +34,7 @@ export class ImageInfo {
         return this.idProfile;
     }
 
-    setIdUser(IdProfile: number){
+    setIdProfile(IdProfile: number){
         this.idProfile =IdProfile;
     }
 

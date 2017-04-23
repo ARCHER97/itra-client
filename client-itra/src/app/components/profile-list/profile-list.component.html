@@ -6,3 +6,11 @@
     <rating [ngModel]="profile.getRating()" [max]="10" [readonly]="true"></rating>
   </div>
 </div>
+<div class="tags-cloud">
+  <angular-tag-cloud
+    [data]="data"
+    [width]="options.width"
+    [height]="options.height"
+    [overflow]="options.overflow">
+  </angular-tag-cloud>
+</div>
