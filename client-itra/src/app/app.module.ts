@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { RlTagInputModule } from 'angular2-tag-input';
+import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
+import { Ng2CloudinaryModule } from 'ng2-cloudinary';
 import { DndModule } from 'ng2-dnd';
 import { TagCloudModule } from 'angular-tag-cloud-module';
 import { RatingModule } from 'ngx-bootstrap';
@@ -11,6 +14,7 @@ import { ButtonsModule } from 'ngx-bootstrap';
 import { TabsModule } from 'ngx-bootstrap';
 import { CarouselModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
+import { BsDropdownModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -31,6 +35,8 @@ import { ProfileService } from './services/profile.service';
 import { ImageService } from './services/image.service';
 import { TagsService } from './services/tags.service';
 import { AdminService } from './services/admin.service';
+import { SexService } from './services/sex.service';
+import { TypeOfPhotoService } from './services/type-of-photo.service';
 
 import { RoutingModule } from './routing/routing.module';
 
@@ -58,14 +64,18 @@ import { RoutingModule } from './routing/routing.module';
     FormsModule,
     HttpModule,
     RoutingModule,
+    RlTagInputModule,
     DndModule.forRoot(),
     TagCloudModule,
+    FileUploadModule,
+    Ng2CloudinaryModule,
     RatingModule.forRoot(),
     AccordionModule.forRoot(),
     ButtonsModule.forRoot(),
     TabsModule.forRoot(),
     CarouselModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   providers: [
     AuthService,
@@ -73,7 +83,9 @@ import { RoutingModule } from './routing/routing.module';
     ProfileService,
     ImageService,
     TagsService,
-    AdminService
+    AdminService,
+    SexService,
+    TypeOfPhotoService
   ],
   bootstrap: [AppComponent]
 })

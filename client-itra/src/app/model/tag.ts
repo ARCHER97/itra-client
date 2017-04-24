@@ -1,5 +1,7 @@
 export class Tag {
     
+    private idImage: number;
+
     constructor(private text: string){
 
     }
@@ -12,4 +14,11 @@ export class Tag {
         this.text = text;
     }
     
+    getIdImage(): number {
+        return this.idImage;
+    }
+
+    setIdImage(idImage: number) {
+        this.idImage = idImage;
+    }
 }

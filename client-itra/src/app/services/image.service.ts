@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {Promise} from 'es6-promise';
+
 import { ImageInfo } from '../model/image-info';
+import { Tag } from '../model/tag';
 
 @Injectable()
 export class ImageService {
 
   baseUrl = "http://localhost:8080/images/";
+  baseUrlTags = "http://localhost:8080/tags/"
 
   constructor(private http: Http) { }
 
@@ -33,6 +36,54 @@ export class ImageService {
         }
         return arrayImage;
       })
+  }
+
+  saveFirstImageByProfileId(url: string, idProfile: number){
+    let body = JSON.stringify({ url: url, idProfile: idProfile, position: 1 });
+    let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
+    
+    return this.http.post(this.baseUrl+'save', body, { headers: headers })
+                    .toPromise()
+                    .then( (resp: Response) => { });
+  }
+
+  uploadImageWithTags(url: string, idProfile: number, tags: string[]){
+    this.uploadNextImage(url, idProfile).then(res => {
+      console.log("uploading next image complite");
+      console.log(res)
+      // this.uploadTags(tags, res).then(() => {
+      //   console.log("uploading tags complite");
+      // })
+    })
+  }
+
+  uploadNextImage(url: string, idProfile: number): Promise<number>{
+    let body = JSON.stringify({ url: url, idProfile: idProfile });
+    let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
+    
+    return this.http.post(this.baseUrl+'save/next', body, { headers: headers })
+                    .toPromise()
+                    .then( (res: Response) => {
+                        return res;
+                     });
+  }
+
+  uploadTags(tags: string[], idImage: number){
+    let arrayTag: Array<Tag> = new Array();
+    for(let i = 0; i < tags.length; i++){
+      let tag: Tag = new Tag(tags[i]);
+      tag.setIdImage(idImage);
+      arrayTag.push(tag);
+    }
+
+    let body = JSON.stringify({ tags: arrayTag, idImage: idImage });
+    console.log(body);
+
+    let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
+    
+    return this.http.post(this.baseUrlTags+'save', body, { headers: headers })
+                    .toPromise()
+                    .then( (resp: Response) => { });
   }
 
 }

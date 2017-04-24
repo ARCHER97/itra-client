@@ -30,7 +30,7 @@ export class AuthService {
                         });
     }
 
-    singup(login, password, profile: Profile): Promise<Response> {
+    singup(login, password, profile: Profile, url: string): Promise<Response> {
         let loginRequest = JSON.stringify(
             { 
                 user: {
@@ -39,16 +39,21 @@ export class AuthService {
                 },
                 profile: {
                     idSex: profile.getSex(),
-                    idTypesOfPhotography: profile.getTypesOfPhotography(),
+                    idTypeOfPhotography: profile.getTypesOfPhotography(),
                     name: profile.getName(),
                     yearOfBirth: profile.getYearOfBirth(),
                     weight: profile.getWeight(),
                     height: profile.getHeight(),
                     rating: 0,
                     colLike: 0
+                },
+                image:{
+                    position: 1,
+                    url: url
                 }
             }
         );
+        console.log(loginRequest)
         let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
         
         return this.http.post(this.baseUrlSingup, loginRequest, { headers: headers })
