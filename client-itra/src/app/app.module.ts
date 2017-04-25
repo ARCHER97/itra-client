@@ -37,12 +37,9 @@ import { TagsService } from './services/tags.service';
 import { AdminService } from './services/admin.service';
 import { SexService } from './services/sex.service';
 import { TypeOfPhotoService } from './services/type-of-photo.service';
+import { CommentService } from './services/comment.service';
 
 import { RoutingModule } from './routing/routing.module';
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -85,7 +82,8 @@ import { RoutingModule } from './routing/routing.module';
     TagsService,
     AdminService,
     SexService,
-    TypeOfPhotoService
+    TypeOfPhotoService,
+    CommentService
   ],
   bootstrap: [AppComponent]
 })

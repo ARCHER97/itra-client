@@ -23,6 +23,8 @@ export class ProfileViewComponent implements OnInit {
   images: Array<ImageInfo> = new Array();
   
   selectImage: ImageInfo = new ImageInfo(1,1,'http://res.cloudinary.com/mycloudfortask5/image/upload/v1492878624/imagenotfound_reuccl.png');
+  
+  tagsOfSelectedImage = ['asd','dsa'];
 
   constructor(
     private route: ActivatedRoute,

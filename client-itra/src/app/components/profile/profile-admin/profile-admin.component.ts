@@ -48,7 +48,10 @@ export class ProfileAdminComponent implements OnInit {
     this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any): any => {
             let res: any = JSON.parse(response);
             let imageUrl = 'http://res.cloudinary.com/mycloudfortask5/image/upload/' + res.public_id;
-            this.imageService.uploadImageWithTags(imageUrl, this.route.snapshot.params['id'], this.tags);
+            this.imageService.uploadImageWithTags(imageUrl, this.route.snapshot.params['id'], this.tags).then(res=>{
+              this.hideImageUploadModal();
+              this.reloadImages();               
+            });
             return { item, response, status, headers };
     };
 

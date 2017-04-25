@@ -28,7 +28,7 @@ export class ImageService {
       .toPromise()
       .then(res => {
         let arrayImage = new Array<ImageInfo>();
-        for(let i = 0; i< res.json().length; i++)
+        for(let i = 0; i < res.json().length; i++)
         {
           let image: ImageInfo = new ImageInfo(res.json()[i].id, res.json()[i].position, res.json()[i].url);
           //image.setIdProfile(res.json()[i].idProfile);
@@ -47,13 +47,11 @@ export class ImageService {
                     .then( (resp: Response) => { });
   }
 
-  uploadImageWithTags(url: string, idProfile: number, tags: string[]){
-    this.uploadNextImage(url, idProfile).then(res => {
-      console.log("uploading next image complite");
-      console.log(res)
-      // this.uploadTags(tags, res).then(() => {
-      //   console.log("uploading tags complite");
-      // })
+  uploadImageWithTags(url: string, idProfile: number, tags: string[]): Promise<string> {
+    return this.uploadNextImage(url, idProfile).then(res => {
+      return this.uploadTags(tags, res).then(res => {
+        return res;
+      })
     })
   }
 
@@ -64,7 +62,7 @@ export class ImageService {
     return this.http.post(this.baseUrl+'save/next', body, { headers: headers })
                     .toPromise()
                     .then( (res: Response) => {
-                        return res;
+                        return res.text();
                      });
   }
 
@@ -81,9 +79,11 @@ export class ImageService {
 
     let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
     
-    return this.http.post(this.baseUrlTags+'save', body, { headers: headers })
+    return this.http.post(this.baseUrlTags+'saveall', body, { headers: headers })
                     .toPromise()
-                    .then( (resp: Response) => { });
+                    .then( (res: Response) => {
+                        return res.text();
+                    });
   }
 
 }
