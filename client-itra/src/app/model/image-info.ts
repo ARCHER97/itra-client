@@ -6,7 +6,7 @@ export class ImageInfo {
                 private position: number,
                 private url: string){ }
 
-    getId(){
+    getId(): number{
         return this.id;
     }
 

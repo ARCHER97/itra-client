@@ -4,9 +4,11 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { ProfileService } from '../../../services/profile.service';
 import { ImageService } from '../../../services/image.service';
+import { CommentService } from '../../../services/comment.service';
 
 import { Profile } from '../../../model/profile';
 import { ImageInfo } from '../../../model/image-info';
+import { Comment } from '../../../model/comment';
 
 @Component({
   selector: 'app-profile-view',
@@ -26,10 +28,15 @@ export class ProfileViewComponent implements OnInit {
   
   tagsOfSelectedImage = ['asd','dsa'];
 
+  comments: Array<Comment> = new Array();
+
+  newComment = '';
+
   constructor(
     private route: ActivatedRoute,
     private profileService: ProfileService,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private commentService: CommentService
   ) {
     this.images = new Array();
     this.images.push(new ImageInfo(1,1,'http://res.cloudinary.com/mycloudfortask5/image/upload/v1492878624/imagenotfound_reuccl.png')); 
@@ -51,11 +58,26 @@ export class ProfileViewComponent implements OnInit {
 
   public showChildModal(image: ImageInfo):void {
     this.selectImage = image;
+    this.downloadCommentsOfSelectedImage();
     this.childModal.show();
   }
 
   public hideChildModal():void {
     this.childModal.hide();
+    this.newComment = '';
+  }
+
+  downloadCommentsOfSelectedImage(){
+    this.commentService.getComments(this.selectImage.getId()).then(res => {
+      this.comments = res;
+    })
+  }
+
+  uploadCommentOfSelectedImage(){
+    this.commentService.uploadComment(this.selectImage.getId(), this.newComment).then(res => {
+      this.downloadCommentsOfSelectedImage();
+      this.newComment = '';
+    });
   }
 
 }
