@@ -6,9 +6,11 @@ import { CloudinaryOptions, CloudinaryUploader } from 'ng2-cloudinary';
 
 import { ProfileService } from '../../../services/profile.service';
 import { ImageService } from '../../../services/image.service';
+import { CommentService } from '../../../services/comment.service';
 
 import { Profile } from '../../../model/profile';
 import { ImageInfo } from '../../../model/image-info';
+import { Comment } from '../../../model/comment';
 
 @Component({
   selector: 'app-profile-admin',
@@ -35,10 +37,15 @@ export class ProfileAdminComponent implements OnInit {
 
   tags: any = [];
 
+  comments: Array<Comment> = new Array();
+
+  newComment = '';
+
   constructor(
     private route: ActivatedRoute,
     private profileService: ProfileService,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private commentService: CommentService
   ) {
 
     this.uploader.onAfterAddingAll = (item: any) => {
@@ -79,11 +86,13 @@ export class ProfileAdminComponent implements OnInit {
 
   public showChildModal(image: ImageInfo):void {
     this.selectImage = image;
+    this.downloadCommentsOfSelectedImage();
     this.imageAdminModal.show();
   }
 
   public hideChildModal():void {
     this.imageAdminModal.hide();
+    this.newComment = '';
   }
 
   public showImageUploadModal(image: ImageInfo):void {
@@ -106,4 +115,16 @@ export class ProfileAdminComponent implements OnInit {
     this.upload()
   }
 
+  downloadCommentsOfSelectedImage(){
+    this.commentService.getComments(this.selectImage.getId()).then(res => {
+      this.comments = res;
+    })
+  }
+
+  uploadCommentOfSelectedImage(){
+    this.commentService.uploadComment(this.selectImage.getId(), this.newComment).then(res => {
+      this.downloadCommentsOfSelectedImage();
+      this.newComment = '';
+    });
+  }
 }

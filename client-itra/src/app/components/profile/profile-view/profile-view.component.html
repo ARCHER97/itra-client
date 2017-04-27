@@ -12,7 +12,7 @@
   </div>
   <div style="clear: both;"></div>
   <div style="margin-left: 20px;">
-    <rating [(ngModel)]="profile.rating" [max]="10" [readonly]="false"></rating> 
+    <rating [(ngModel)]="profile.rating" [max]="10" [readonly]="!authState.authState" (click)="saveRating()"></rating> 
   </div>
 </div>
 
@@ -67,12 +67,6 @@
 <div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!--<div class="modal-header">
-        <h4 class="modal-title pull-left">Image</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>-->
       <div class="modal-body">
         <div [ngClass]="['comments-image']">
           <img [src]="selectImage.getUrl()" width="100%"/>

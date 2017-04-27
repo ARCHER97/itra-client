@@ -46,6 +46,8 @@ export class SingupComponent {
 
   selectedTypeOfPhoto: string = "not select";
 
+  errorState = false;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -80,17 +82,18 @@ export class SingupComponent {
   }
 
   singup(){
+    if((this.profile.getHeight()*this.profile.getWeight()*this.profile.getYearOfBirth() == 0) || 
+       (this.uploader.isUploading == false)){
+      this.errorState = true;
+    }
     this.auth(this.imageUrl);
   }
 
   auth(url: any){
     this.authService.singup(this.login, this.password, this.profile, url).then(res => {
-      // if(this.authService.isSignedIn()) {
-      //   console.log(url, this.profile.getId())
-      //   this.imageService.saveFirstImageByProfileId(url, this.profile.getId())
-      //   this.router.navigate(['/profiles-preview']);
-      // }
-      this.router.navigate(['/profiles-preview']);
+      if(res){
+        this.router.navigate(['/profiles-preview']);
+      } else this.errorState = true;
     });
   }
 

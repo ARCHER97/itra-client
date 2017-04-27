@@ -62,7 +62,9 @@ export class AuthService {
                             if(resp.text() != ""){
                               localStorage.setItem('jwt', resp.text());
                               authState.authState = !authState.authState;
+                              return true;
                             }
+                            return false;
                         });
     }
 

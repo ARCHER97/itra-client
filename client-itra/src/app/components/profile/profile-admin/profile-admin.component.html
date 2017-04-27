@@ -74,14 +74,29 @@
 <div bsModal #imageAdminModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">Image</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
       <div class="modal-body">
-        <img [src]="selectImage.getUrl()" width="50%"/>
+        <div [ngClass]="['comments-image']">
+          <img [src]="selectImage.getUrl()" width="100%"/>
+        </div>
+        <div [ngClass]="['comments-modal']">
+          <div [ngClass]="['comments-list','col-sm-12']">
+            <div *ngFor="let comment of comments">
+              <p>
+                <b>{{comment.getTitle()}}</b> {{comment.getText()}}
+              </p>
+            </div>
+          </div>
+          <div [ngClass]="['comments-add','col-sm-12']" data-spy="affix-top">
+            <span width="70%"><input type="text" [(ngModel)]="newComment" class="form-text" id="usr"></span>
+            <span width="30%" >
+              <button class="btn btn-default" (click)="uploadCommentOfSelectedImage()">
+                add
+              </button>
+            </span>
+          </div>
+        </div>
+        <div style="clear: both;">
+        </div>
       </div>
     </div>
   </div>

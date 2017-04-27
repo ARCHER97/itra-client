@@ -15,6 +15,7 @@ import { TabsModule } from 'ngx-bootstrap';
 import { CarouselModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap';
+import { AlertModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -38,6 +39,7 @@ import { AdminService } from './services/admin.service';
 import { SexService } from './services/sex.service';
 import { TypeOfPhotoService } from './services/type-of-photo.service';
 import { CommentService } from './services/comment.service';
+import { RatingService } from './services/rating.service';
 
 import { RoutingModule } from './routing/routing.module';
 
@@ -72,7 +74,8 @@ import { RoutingModule } from './routing/routing.module';
     TabsModule.forRoot(),
     CarouselModule.forRoot(),
     ModalModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [
     AuthService,
@@ -83,7 +86,8 @@ import { RoutingModule } from './routing/routing.module';
     AdminService,
     SexService,
     TypeOfPhotoService,
-    CommentService
+    CommentService,
+    RatingService
   ],
   bootstrap: [AppComponent]
 })

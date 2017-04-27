@@ -74,10 +74,6 @@
     color: white;    
 }
 
-.container-fluid {
-    margin-top: 30px;
-}
-
 .my-drop-zone { border: dotted 3px lightgray; }
 .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
 .another-file-over-class { border: dotted 3px green; }
@@ -120,6 +116,64 @@
     padding: 20px;
 }
 
-.button-upload-div {
-   
+.container-fluid {
+    margin-top: 30px;
+}
+
+.comments-modal {
+    width: 50%;
+    padding-top: 20px;
+    float: right;
+
+    -moz-flex-box: 1;
+    -webkit-flex-box:1;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.modal-body {
+    padding: 0;
+
+    display: -moz-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.comments-list {
+    height: 400px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.comments-add {
+    height: 20%;
+}
+
+.comments-image {
+    float: left;
+    padding: 0;
+    width: 50%;
+}
+
+input {
+    border: dotted 3px lightgray;
+    height: 40px;
+    width: 70%
+}
+
+.form-text {
+    border: dotted 3px lightgray;
+}
+
+.form-text:focus {
+    background: #ffe;
+    border: dotted 3px lightgray;
+}
+
+.btn-default {
+    height: 40px;
+    width: 20%
 }

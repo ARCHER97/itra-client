@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { AuthService } from '../../../services/auth.service'
 
@@ -18,9 +19,12 @@ export class LoginComponent implements OnInit {
 
   password: string;
 
+  exeptionStatus = false;
+
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -28,7 +32,8 @@ export class LoginComponent implements OnInit {
 
   authLogin(){
     this.authService.login(this.login, this.password).then(res => {
-        if(this.authService.isSignedIn()) this.router.navigate(['/profiles-preview']);
+        if(this.authService.isSignedIn()) this.location.back();
+        else this.exeptionStatus = true;
     });
   }
 

@@ -5,10 +5,13 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ProfileService } from '../../../services/profile.service';
 import { ImageService } from '../../../services/image.service';
 import { CommentService } from '../../../services/comment.service';
+import { RatingService } from '../../../services/rating.service';
 
 import { Profile } from '../../../model/profile';
 import { ImageInfo } from '../../../model/image-info';
 import { Comment } from '../../../model/comment';
+
+import { authState } from '../../../global/authstate';
 
 @Component({
   selector: 'app-profile-view',
@@ -32,23 +35,30 @@ export class ProfileViewComponent implements OnInit {
 
   newComment = '';
 
+  authState = authState;
+
   constructor(
     private route: ActivatedRoute,
     private profileService: ProfileService,
     private imageService: ImageService,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private ratingService: RatingService
   ) {
     this.images = new Array();
     this.images.push(new ImageInfo(1,1,'http://res.cloudinary.com/mycloudfortask5/image/upload/v1492878624/imagenotfound_reuccl.png')); 
-    profileService.getProfileById(this.route.snapshot.params['id']).then(res => {
-      this.profile = res;
-    });
+    this.updateProfile();
     imageService.getImagesByProfileId(this.route.snapshot.params['id']).then(res => {
       this.images = res;
     });
   }
 
   ngOnInit() {
+  }
+
+  updateProfile(){
+    this.profileService.getProfileById(this.route.snapshot.params['id']).then(res => {
+      this.profile = res;
+    });
   }
 
   checkTile(i: number){
@@ -78,6 +88,14 @@ export class ProfileViewComponent implements OnInit {
       this.downloadCommentsOfSelectedImage();
       this.newComment = '';
     });
+  }
+
+  saveRating(){
+    if(authState.authState){
+      this.ratingService.addRating(this.profile.getRating(), this.profile.getId()).then(res => {
+        this.updateProfile();
+      });
+    }
   }
 
 }
