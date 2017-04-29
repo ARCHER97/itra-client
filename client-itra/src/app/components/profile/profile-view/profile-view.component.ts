@@ -69,6 +69,9 @@ export class ProfileViewComponent implements OnInit {
   public showChildModal(image: ImageInfo):void {
     this.selectImage = image;
     this.downloadCommentsOfSelectedImage();
+    setInterval(() => { 
+      this.downloadCommentsOfSelectedImage(); 
+    }, 1000 * 2);
     this.childModal.show();
   }
 

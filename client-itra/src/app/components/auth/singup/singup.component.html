@@ -92,7 +92,7 @@
   </alert>
   
   <div class="input-group">
-    <button type="button" class="btn btn-primary" (click)="singup()">singup</button>
+    <button type="button" class="btn btn-primary" (click)="singup()" [disabled]="!canSingup()">singup</button>
   </div>  
   
 </form>

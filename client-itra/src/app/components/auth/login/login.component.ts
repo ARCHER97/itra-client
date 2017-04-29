@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
 
   exeptionStatus = false;
 
+  result = '';
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -30,11 +32,23 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  authLogin(){
+  authLogin() {
     this.authService.login(this.login, this.password).then(res => {
         if(this.authService.isSignedIn()) this.location.back();
         else this.exeptionStatus = true;
     });
   }
+
+  twiter() {
+    console.log("twiter")
+  }
+
+  facebook() {
+    console.log("facebook")
+  }
+
+  canLogin(){
+    return this.login != "" && this.password != "" ; 
+  } 
 
 }

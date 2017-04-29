@@ -2,7 +2,7 @@ export class Tag {
     
     private idImage: number;
 
-    constructor(private text: string){
+    constructor(public text: string){
 
     }
 

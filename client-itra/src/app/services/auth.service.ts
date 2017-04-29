@@ -10,6 +10,8 @@ import { authState } from '../global/authstate';
 @Injectable()
 export class AuthService {
 
+    baseUrlProfile: string = 'http://localhost:8080/profiles';
+
     baseUrlLogin: string = 'http://localhost:8080/users/login';
 
     baseUrlSingup: string = 'http://localhost:8080/users/singup'
@@ -53,7 +55,7 @@ export class AuthService {
                 }
             }
         );
-        console.log(loginRequest)
+        
         let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
         
         return this.http.post(this.baseUrlSingup, loginRequest, { headers: headers })
@@ -84,4 +86,14 @@ export class AuthService {
         return localStorage.getItem('jwt') !== null;
     }
 
+    getNumberOfMyProfile(): Promise<number>{
+        let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json',
+                                    'jwt': localStorage.getItem('jwt')});
+
+        return this.http.get(this.baseUrlProfile+'/getMyProfileId', { headers: headers })
+                        .toPromise()
+                        .then( (resp: Response) => {
+                            return resp.text();
+                        });
+    }
 }

@@ -24,15 +24,16 @@
     </template>
 
     <div class="container-fluid">
-      <div class="row" dnd-sortable-container [dropZones]="['drops-zone']" [sortableData]="images">
-          <div *ngFor="let image of images; let i = index;" 
-              class="image-block col-sm-4" 
-              (click)="showChildModal(image)"
-              [ngStyle]="{'background': 'url(' + image.getUrl() + ') no-repeat center top', 'background-size': 'cover'}"
-              dnd-sortable [sortableIndex]="i">
-            <p> Image Info </p>
-          </div>
-      </div>
+      <div class="row" dnd-sortable-container [dropZones]="['drops-zone']" [sortableData]="images" 
+          (dragend)="onDragEnd($event)">
+        <div *ngFor="let image of images; let i = index;" 
+            class="image-block col-sm-4" 
+            (click)="showChildModal(image)"
+            [ngStyle]="{'background': 'url(' + image.getUrl() + ') no-repeat center top', 'background-size': 'cover'}"
+            dnd-sortable [sortableIndex]="i"> 
+          <p> Image Info </p>
+        </div>
+      </div> 
     </div>
   </tab>
 
@@ -111,21 +112,25 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div ng2FileDrop
+      <div *ngIf="uploader?.queue?.length == 0" ng2FileDrop
             [ngClass]="{'another-file-over-class': hasAnotherDropZoneOver}"
             (fileOver)="fileOverAnother($event)"
+            
             [uploader]="uploader"
             class="well my-drop-zone">
           Drop zone
       </div>
-      <div *ngFor="let item of uploader.queue">
-        <div>File for upload: {{item.file.name}}</div>
+      <div *ngIf="uploader?.queue?.length != 0">
+        <div *ngFor="let item of uploader.queue">
+          <div><h1>File for upload: {{item.file.name}}</h1></div>
+        </div>
       </div>
       <div class="tags-div">
         <rl-tag-input [(ngModel)]="tags" placeholder="+ Tag"></rl-tag-input>
       </div>
       <div class="button-upload-div">
-        <button class="button-upload" (click)="uploadNewImageWithTags()">Upload</button>
+        <button class="button-upload" (click)="uploadNewImageWithTags()" 
+            [disabled]="uploader?.queue?.length == 0">Upload</button>
       </div>
     </div>
   </div>

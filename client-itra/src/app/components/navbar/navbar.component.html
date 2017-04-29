@@ -30,7 +30,7 @@
         </li>
         <li><a routerLink="/settings" data-toggle="tooltip"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
         <li *ngIf="authState.authState">
-          <a routerLink="/admin/profile/1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+          <a (click)="routeToMyProfile()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
         </li>
         <li *ngIf="!authState.authState">
           <a routerLink="/auth"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a>

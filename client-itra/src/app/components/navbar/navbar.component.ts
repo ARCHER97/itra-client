@@ -40,4 +40,11 @@ export class NavbarComponent implements OnInit {
     this.searchValue = "";
   }
 
+  routeToMyProfile(){
+    this.authService.getNumberOfMyProfile().then(res => {
+      let link: string = '/admin/profile/'+res;
+      this.router.navigate([link]);
+    })
+  }
+
 }

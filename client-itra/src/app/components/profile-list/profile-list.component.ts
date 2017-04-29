@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { CloudData, CloudOptions } from 'angular-tag-cloud-module';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 import { ProfilePreviewService } from '../../services/profile-preview.service';
 import { TagsService } from '../../services/tags.service';
@@ -23,21 +24,28 @@ export class ProfileListComponent implements OnInit {
     overflow: false,
   }
 
-  data: Array<CloudData> = [ ]
+  data: Array<CloudData> = new Array();
 
   constructor(
     private profilePreviewService: ProfilePreviewService,
     private router: Router,
     private tagService: TagsService
   ) {
+
     profilePreviewService.getTop(4).then( res => {
       this.profilesPreview = res;
     });
-    let tags: Array<Tag> = this.tagService.getTags();
-    this.data = new Array();
-    tags.forEach(tag => {
-      this.data.push({text: tag.getText(), weight: 3}) 
-    })
+
+    this.tagService.getTags().then(res => {
+      this.data = new Array();
+      let tags: Array<Tag> = res;
+      tags.forEach(tag => {
+        console.log(tag.text)
+        this.data.push({text: tag.text, weight: 3}) 
+      })
+      this.newData(this.data);
+    }); 
+
   }
 
   ngOnInit() {
@@ -48,8 +56,9 @@ export class ProfileListComponent implements OnInit {
     this.router.navigate(['/profile', id]);
   }
 
+  newData(array: Array<CloudData>){
+    const changedData$: Observable<Array<CloudData>> = Observable.of(array);
+    changedData$.subscribe(res => this.data = res);
+  }
   
- 
-  
-
 }

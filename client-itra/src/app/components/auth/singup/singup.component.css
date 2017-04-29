@@ -8,3 +8,20 @@
 .another-file-over-class { border: dotted 3px green; }
 
 html, body { height: 100%; }
+
+.dropdown-menu {
+    width: 100%;
+}
+
+.dropdown-item {
+    width: 100%;
+}
+
+.btn-group {
+    width: 100%;
+}
+
+.btn {
+    width: 100%;
+    background-color: darkgrey;
+}

@@ -31,3 +31,7 @@ div{
 .panel-default{
     border-radius: 10px;
 }
+
+angular-tag-cloud {
+    margin: 0 auto;
+}

@@ -25,28 +25,18 @@ export class SingupComponent {
   );
 
   public hasAnotherDropZoneOver:boolean = false;
-
   profile: Profile = new Profile(0,'',0,0,0,'','',0)
-
   authState = authState;
-
   login: string;
-
   password: string;
-
   stateLoad = false;
-
   imageUrl: any;
-
   arraySex: Array<Sex> = new Array();
-
   arrayTypeOfPhoto: Array<TypeOfPhoto> = new Array();
-
   selectedSex: string = "not select";
-
   selectedTypeOfPhoto: string = "not select";
-
   errorState = false;
+  uploadStatus = false;
 
   constructor(
     private authService: AuthService,
@@ -56,14 +46,14 @@ export class SingupComponent {
     private typeOfPhotoService: TypeOfPhotoService
   ) {
     this.uploader.onAfterAddingAll = (item: any) => {
-       this.stateLoad =true;
-       this.upload();
+       this.stateLoad = true;
+       this.upload(); 
     };
     
     this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any): any => {
             let res: any = JSON.parse(response);
             this.imageUrl = 'http://res.cloudinary.com/mycloudfortask5/image/upload/' + res.public_id;
-            
+            this.uploadStatus = true;
             return { item, response, status, headers };
     };
 
@@ -114,5 +104,11 @@ export class SingupComponent {
     this.profile.setTypesOfPhotography(photo.getId().toString());
     this.selectedTypeOfPhoto = photo.getText();
   }
+
+  canSingup(){
+    return this.login != "" && this.password != "" && this.profile.getName() != "" 
+            && this.profile.getWeight().toString() != "" && this.profile.getHeight().toString() != ""
+            && this.profile.getYearOfBirth().toString() != "" && this.uploadStatus; 
+  } 
 
 }

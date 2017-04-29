@@ -17,7 +17,6 @@ export class CommentService {
       .toPromise()
       .then(res => {
         let arrayComment = new Array<Comment>();
-        console.log(this.baseUrl+'getAll/'+id)
         for(let i = 0; i < res.json().length; i++) {
           let comment: Comment = new Comment(
                                         res.json()[i].id,

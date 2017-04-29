@@ -15,7 +15,9 @@ export class SerachComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.searchValue = this.route.snapshot.params['value'];
+    if(this.route.snapshot.params['value'] != null)
+      this.searchValue = this.route.snapshot.params['value'];
+    else this.searchValue = "";
   }
 
   search(){

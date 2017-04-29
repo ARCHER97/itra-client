@@ -24,22 +24,16 @@ export class ProfileAdminComponent implements OnInit {
   uploader: CloudinaryUploader = new CloudinaryUploader(
     new CloudinaryOptions({ cloudName: 'mycloudfortask5', uploadPreset: 'hinmrkp5' })
   );
-
   public hasAnotherDropZoneOver:boolean = false;
-
   public radioModel: string = 'Middle';
-
   profile: Profile = new Profile(0,'not found',0,0,0,'not found','not found',0);
-  
-  images: Array<ImageInfo> = new Array();
-  
+  images: Array<ImageInfo> = new Array(); 
   selectImage: ImageInfo = new ImageInfo(1,1,'http://res.cloudinary.com/mycloudfortask5/image/upload/v1492878624/imagenotfound_reuccl.png');
-
   tags: any = [];
-
   comments: Array<Comment> = new Array();
-
   newComment = '';
+  uploadingStatus = false;
+  timer;
 
   constructor(
     private route: ActivatedRoute,
@@ -86,7 +80,10 @@ export class ProfileAdminComponent implements OnInit {
 
   public showChildModal(image: ImageInfo):void {
     this.selectImage = image;
-    this.downloadCommentsOfSelectedImage();
+    this.downloadCommentsOfSelectedImage(); 
+    setInterval(() => { 
+      this.downloadCommentsOfSelectedImage(); 
+    }, 1000 * 2);
     this.imageAdminModal.show();
   }
 
@@ -127,4 +124,27 @@ export class ProfileAdminComponent implements OnInit {
       this.newComment = '';
     });
   }
+
+  changeUploadStatus(){
+    this.uploadingStatus = !this.uploadingStatus;
+  }
+
+  drop(){
+    console.log("drop")
+  }
+
+  onDragEnd(ev: DragEvent) {
+      console.log(this.images);
+      this.numberImages();
+      this.imageService.saveAll(this.images)
+  }
+
+  numberImages(){
+    let i = 1;
+    this.images.forEach(element => {
+      element.setPosition(i);
+      i = i + 1;
+    });
+  }
+
 }

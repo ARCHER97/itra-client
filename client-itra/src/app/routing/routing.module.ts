@@ -14,6 +14,7 @@ const appRoutes: Routes = [
   { path: '', redirectTo: '/profiles-preview', pathMatch: 'full' },
   { path: 'profiles-preview', component: ProfileListComponent },
   { path: 'search/:value', component: SerachComponent },
+  { path: 'search', component: SerachComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'profile/:id', component: ProfileViewComponent },
   { path: 'admin/profile/:id', component: ProfileAdminComponent },
