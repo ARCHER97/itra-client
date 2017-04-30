@@ -13,7 +13,7 @@ export class ProfileService {
   constructor(private http: Http) { }
 
   public getProfileById(id: number): Promise<Profile>{
-    return this.http.get(this.baseUrl+"get/user/"+id)
+    return this.http.get(this.baseUrl+"get/"+id)
       .toPromise()
       .then(res => {
         let body = res.json();

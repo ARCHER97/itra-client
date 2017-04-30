@@ -31,6 +31,6 @@ export class SettingsComponent implements OnInit {
   }
 
   whiteBody(){
-    document.body.style.backgroundColor = '#ffffff'
+    document.body.style.backgroundColor = '#fafafa'
   }
 }

@@ -7,6 +7,7 @@ import { CloudinaryOptions, CloudinaryUploader } from 'ng2-cloudinary';
 import { ProfileService } from '../../../services/profile.service';
 import { ImageService } from '../../../services/image.service';
 import { CommentService } from '../../../services/comment.service';
+import { PornoRecognitionService } from '../../../services/porno-recognition.service';
 
 import { Profile } from '../../../model/profile';
 import { ImageInfo } from '../../../model/image-info';
@@ -33,13 +34,15 @@ export class ProfileAdminComponent implements OnInit {
   comments: Array<Comment> = new Array();
   newComment = '';
   uploadingStatus = false;
+  recognitionState = false;
   timer;
 
   constructor(
     private route: ActivatedRoute,
     private profileService: ProfileService,
     private imageService: ImageService,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private pornoRecognitionService: PornoRecognitionService
   ) {
 
     this.uploader.onAfterAddingAll = (item: any) => {
@@ -49,10 +52,20 @@ export class ProfileAdminComponent implements OnInit {
     this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any): any => {
             let res: any = JSON.parse(response);
             let imageUrl = 'http://res.cloudinary.com/mycloudfortask5/image/upload/' + res.public_id;
-            this.imageService.uploadImageWithTags(imageUrl, this.route.snapshot.params['id'], this.tags).then(res=>{
-              this.hideImageUploadModal();
-              this.reloadImages();               
-            });
+
+            this.pornoRecognitionService.recognition(imageUrl).then(res => {
+              if(res) this.imageService.uploadImageWithTags(imageUrl, this.route.snapshot.params['id'], this.tags)
+                  .then(res => {
+                this.hideImageUploadModal();
+                this.reloadImages();            
+                this.preparUploading(false);
+              });
+              else {
+                this.preparUploading(true);
+              }
+            })
+
+            
             return { item, response, status, headers };
     };
 
@@ -74,14 +87,14 @@ export class ProfileAdminComponent implements OnInit {
   }
 
   checkTile(i: number){
-    if( (i+1) % 4 == 0) return true
+    if( (i % 4 == 0) || ((i+1) % 4 == 0) ) return true
     else return false;
   }
 
   public showChildModal(image: ImageInfo):void {
     this.selectImage = image;
     this.downloadCommentsOfSelectedImage(); 
-    setInterval(() => { 
+    this.timer = setInterval(() => { 
       this.downloadCommentsOfSelectedImage(); 
     }, 1000 * 2);
     this.imageAdminModal.show();
@@ -97,6 +110,7 @@ export class ProfileAdminComponent implements OnInit {
   }
 
   public hideImageUploadModal():void {
+    this.preparUploading(false);
     this.imageUploadModal.hide();
   }
 
@@ -129,12 +143,7 @@ export class ProfileAdminComponent implements OnInit {
     this.uploadingStatus = !this.uploadingStatus;
   }
 
-  drop(){
-    console.log("drop")
-  }
-
   onDragEnd(ev: DragEvent) {
-      console.log(this.images);
       this.numberImages();
       this.imageService.saveAll(this.images)
   }
@@ -145,6 +154,15 @@ export class ProfileAdminComponent implements OnInit {
       element.setPosition(i);
       i = i + 1;
     });
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.timer);
+  }
+
+  preparUploading(state: boolean){
+    this.uploader.queue.pop();
+    this.recognitionState = state;
   }
 
 }

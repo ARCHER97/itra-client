@@ -72,7 +72,8 @@ export class AuthService {
 
     logout():void {
         localStorage.removeItem('jwt');
-        authState.authState = !authState.authState;
+        authState.authState = false;
+        authState.adminState = false;
     }
 
     private handleError (error: any) {

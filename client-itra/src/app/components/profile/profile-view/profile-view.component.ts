@@ -37,6 +37,8 @@ export class ProfileViewComponent implements OnInit {
 
   authState = authState;
 
+  timer;
+
   constructor(
     private route: ActivatedRoute,
     private profileService: ProfileService,
@@ -62,14 +64,14 @@ export class ProfileViewComponent implements OnInit {
   }
 
   checkTile(i: number){
-    if( (i+1) % 4 == 0) return true
+    if( (i % 4 == 0) || ((i+1) % 4 == 0) ) return true
     else return false;
   }
 
   public showChildModal(image: ImageInfo):void {
     this.selectImage = image;
     this.downloadCommentsOfSelectedImage();
-    setInterval(() => { 
+    this.timer = setInterval(() => { 
       this.downloadCommentsOfSelectedImage(); 
     }, 1000 * 2);
     this.childModal.show();
@@ -99,6 +101,10 @@ export class ProfileViewComponent implements OnInit {
         this.updateProfile();
       });
     }
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.timer);
   }
 
 }

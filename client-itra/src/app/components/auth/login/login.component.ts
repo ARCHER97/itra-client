@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { AuthService } from '../../../services/auth.service'
+import { AuthService } from '../../../services/auth.service';
+import { AdminService } from '../../../services/admin.service';
 
 import { authState } from '../../../global/authstate';
 
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private adminService: AdminService,
     private router: Router,
     private location: Location
   ) { }
@@ -34,8 +36,12 @@ export class LoginComponent implements OnInit {
 
   authLogin() {
     this.authService.login(this.login, this.password).then(res => {
-        if(this.authService.isSignedIn()) this.location.back();
-        else this.exeptionStatus = true;
+        if(this.authService.isSignedIn()) {
+          this.adminService.isAdmin().then(result => {
+            authState.adminState = result;
+            this.location.back();
+          })
+        } else this.exeptionStatus = true;
     });
   }
 

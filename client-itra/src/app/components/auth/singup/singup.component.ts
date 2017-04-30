@@ -7,6 +7,7 @@ import { ImageService } from '../../../services/image.service';
 import { AuthService } from '../../../services/auth.service';
 import { SexService } from '../../../services/sex.service';
 import { TypeOfPhotoService } from '../../../services/type-of-photo.service';
+import { AdminService } from '../../../services/admin.service';
 import { Profile } from '../../../model/profile';
 import { Sex } from '../../../model/sex';
 import { TypeOfPhoto } from '../../../model/type-of-photo';
@@ -40,6 +41,7 @@ export class SingupComponent {
 
   constructor(
     private authService: AuthService,
+    private adminService: AdminService,
     private router: Router,
     private imageService: ImageService,
     private sexService: SexService,
@@ -82,7 +84,10 @@ export class SingupComponent {
   auth(url: any){
     this.authService.singup(this.login, this.password, this.profile, url).then(res => {
       if(res){
-        this.router.navigate(['/profiles-preview']);
+        this.adminService.isAdmin().then(res => {
+          authState.adminState = res;
+          this.router.navigate(['/profiles-preview']);
+        })
       } else this.errorState = true;
     });
   }
