@@ -13,6 +13,7 @@ import { Sex } from '../../../model/sex';
 import { TypeOfPhoto } from '../../../model/type-of-photo';
 
 import { authState } from '../../../global/authstate';
+import { localization } from '../../../global/localizationContext';
 
 @Component({
   selector: 'app-singup',
@@ -20,6 +21,8 @@ import { authState } from '../../../global/authstate';
   styleUrls: ['./singup.component.css']
 })
 export class SingupComponent {
+
+  localization = localization;
 
   uploader: CloudinaryUploader = new CloudinaryUploader(
     new CloudinaryOptions({ cloudName: 'mycloudfortask5', uploadPreset: 'hinmrkp5' })

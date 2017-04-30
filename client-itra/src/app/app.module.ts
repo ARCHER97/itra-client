@@ -41,6 +41,7 @@ import { TypeOfPhotoService } from './services/type-of-photo.service';
 import { CommentService } from './services/comment.service';
 import { RatingService } from './services/rating.service';
 import { PornoRecognitionService } from './services/porno-recognition.service';
+import { LocalizationService } from './services/localization.service';
 
 import { RoutingModule } from './routing/routing.module';
 
@@ -89,7 +90,8 @@ import { RoutingModule } from './routing/routing.module';
     TypeOfPhotoService,
     CommentService,
     RatingService,
-    PornoRecognitionService
+    PornoRecognitionService,
+    LocalizationService
   ],
   bootstrap: [AppComponent]
 })

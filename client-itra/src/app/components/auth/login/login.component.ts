@@ -6,6 +6,7 @@ import { AuthService } from '../../../services/auth.service';
 import { AdminService } from '../../../services/admin.service';
 
 import { authState } from '../../../global/authstate';
+import { localization } from '../../../global/localizationContext';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,8 @@ import { authState } from '../../../global/authstate';
 })
 export class LoginComponent implements OnInit {
 
+  localization = localization;
+  
   authState = authState;
 
   login: string;

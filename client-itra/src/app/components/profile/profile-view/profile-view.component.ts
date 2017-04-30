@@ -11,6 +11,7 @@ import { Profile } from '../../../model/profile';
 import { ImageInfo } from '../../../model/image-info';
 import { Comment } from '../../../model/comment';
 
+import { localization } from '../../../global/localizationContext';
 import { authState } from '../../../global/authstate';
 
 @Component({
@@ -20,6 +21,8 @@ import { authState } from '../../../global/authstate';
 })
 export class ProfileViewComponent implements OnInit {
   @ViewChild('childModal') public childModal:ModalDirective;
+
+  localization = localization;
 
   public radioModel: string = 'Middle';
 

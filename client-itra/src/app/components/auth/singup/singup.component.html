@@ -2,43 +2,43 @@
   
   <div class="input-group">
     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-    <input id="email" type="text" class="form-control" name="email" placeholder="Email"
+    <input id="email" type="text" class="form-control" name="email" placeholder="{{localization.items.loginText}}"
         [(ngModel)]="login">
   </div>
 
   <div class="input-group">
     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-    <input id="password" type="password" class="form-control" name="password" placeholder="Password"
+    <input id="password" type="password" class="form-control" name="password" placeholder="{{localization.items.password}}"
           [(ngModel)]="password">
   </div>
 
   <div class="input-group">
-    <span class="input-group-addon">Name</span>
-    <input id="msg" type="text" class="form-control" name="name" placeholder="Name"
+    <span class="input-group-addon">{{localization.items.name}}</span>
+    <input id="msg" type="text" class="form-control" name="name" placeholder="{{localization.items.name}}"
           [(ngModel)]="profile.name">
   </div>
 
   <div class="input-group">
-    <span class="input-group-addon">Birth</span>
-    <input id="msg" type="text" class="form-control" name="yearOfBirth" placeholder="year of birth"
+    <span class="input-group-addon">{{localization.items.birth}}</span>
+    <input id="msg" type="text" class="form-control" name="yearOfBirth" placeholder="{{localization.items.birth}}"
           [(ngModel)]="profile.yearOfBirth">
   </div>
 
   <div class="input-group">
-    <span class="input-group-addon" >Weight</span>
-    <input id="msg" type="text" class="form-control" name="weight" placeholder="weight"
+    <span class="input-group-addon" >{{localization.items.weight}}</span>
+    <input id="msg" type="text" class="form-control" name="weight" placeholder="{{localization.items.weight}}"
           [(ngModel)]="profile.weight">
   </div>
 
   <div class="input-group">
-    <span class="input-group-addon">Height</span>
-    <input id="msg" type="text" class="form-control" name="height" placeholder="height"
+    <span class="input-group-addon">{{localization.items.height}}</span>
+    <input id="msg" type="text" class="form-control" name="height" placeholder="{{localization.items.height}}"
           [(ngModel)]="profile.height">
   </div>
 
   <div class="input-group">
     
-    <span class="input-group-addon">Sex</span>
+    <span class="input-group-addon">{{localization.items.sex}}</span>
 
     <div class="btn-group" dropdown container="body">
       <button dropdownToggle type="button" class="btn btn-primary dropdownToggle">
@@ -55,7 +55,7 @@
 
   <div class="input-group">
     
-    <span class="input-group-addon">Photo</span>
+    <span class="input-group-addon">{{localization.items.photoText}}</span>
 
     <div class="btn-group" dropdown container="body">
       <button dropdownToggle type="button" class="btn btn-primary dropdownToggle">
@@ -76,7 +76,7 @@
           (fileOver)="fileOverAnother($event)"
           [uploader]="uploader"
           class="well my-drop-zone">
-       Drop zone
+       {{localization.items.dropzone}}
     </div>
   </div>
 
@@ -92,7 +92,7 @@
   </alert>
   
   <div class="input-group">
-    <button type="button" class="btn btn-primary" (click)="singup()" [disabled]="!canSingup()">singup</button>
+    <button type="button" class="btn btn-primary" (click)="singup()" [disabled]="!canSingup()">{{localization.items.singup}}</button>
   </div>  
   
 </form>

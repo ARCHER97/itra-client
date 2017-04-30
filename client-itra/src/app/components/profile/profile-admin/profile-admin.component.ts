@@ -13,6 +13,8 @@ import { Profile } from '../../../model/profile';
 import { ImageInfo } from '../../../model/image-info';
 import { Comment } from '../../../model/comment';
 
+import { localization } from '../../../global/localizationContext';
+
 @Component({
   selector: 'app-profile-admin',
   templateUrl: './profile-admin.component.html',
@@ -21,6 +23,8 @@ import { Comment } from '../../../model/comment';
 export class ProfileAdminComponent implements OnInit {
   @ViewChild('imageAdminModal') public imageAdminModal:ModalDirective;
   @ViewChild('imageUploadModal') public imageUploadModal:ModalDirective;
+
+  localization = localization;
 
   uploader: CloudinaryUploader = new CloudinaryUploader(
     new CloudinaryOptions({ cloudName: 'mycloudfortask5', uploadPreset: 'hinmrkp5' })

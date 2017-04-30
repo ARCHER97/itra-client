@@ -1,10 +1,14 @@
 <accordion>
-  <accordion-group heading="Navbar style">
-    <button type="button" class="btn btn-primary btn-lg active" (click)="dark()">Dark</button>
-    <button type="button" class="btn btn-default btn-lg active" (click)="white()">White</button>
+  <accordion-group heading="{{localization.items.lang}}">
+    <button type="button" class="btn btn-primary btn-lg active" (click)="ruLang()">Русский</button>
+    <button type="button" class="btn btn-default btn-lg active" (click)="enLang()">English</button>
   </accordion-group>
-  <accordion-group heading="Background style">
-    <button type="button" class="btn btn-primary btn-lg active" (click)="darkBody()">Dark</button>
-    <button type="button" class="btn btn-default btn-lg active" (click)="whiteBody()">White</button>
+  <accordion-group heading="{{localization.items.stylenavbar}}">
+    <button type="button" class="btn btn-primary btn-lg active" (click)="dark()">{{localization.items.dark}}</button>
+    <button type="button" class="btn btn-default btn-lg active" (click)="white()">{{localization.items.white}}</button>
+  </accordion-group>
+  <accordion-group heading="{{localization.items.stylebackground}}">
+    <button type="button" class="btn btn-primary btn-lg active" (click)="darkBody()">{{localization.items.dark}}</button>
+    <button type="button" class="btn btn-default btn-lg active" (click)="whiteBody()">{{localization.items.white}}</button>
   </accordion-group>
 </accordion>

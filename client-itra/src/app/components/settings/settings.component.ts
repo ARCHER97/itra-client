@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LocalizationService } from '../../services/localization.service';
+
 import { navbarStyle } from '../../global/navbarstyle';
+import { localization } from '../../global/localizationContext';
 
 @Component({
   selector: 'app-settings',
@@ -9,9 +12,10 @@ import { navbarStyle } from '../../global/navbarstyle';
 })
 export class SettingsComponent implements OnInit {
 
+  localization = localization;
   navbarStyle = navbarStyle;
 
-  constructor() { }
+  constructor(private localizationService: LocalizationService) { }
 
   ngOnInit() {
   }
@@ -33,4 +37,13 @@ export class SettingsComponent implements OnInit {
   whiteBody(){
     document.body.style.backgroundColor = '#fafafa'
   }
+
+  ruLang() {
+    this.localizationService.updataeLocalization('ru');
+  }
+
+  enLang() {
+    this.localizationService.updataeLocalization('en');
+  }
+
 }

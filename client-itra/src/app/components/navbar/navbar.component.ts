@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 
 import { navbarStyle } from '../../global/navbarstyle';
 import { authState } from '../../global/authstate';
+import { localization } from '../../global/localizationContext';
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +15,7 @@ export class NavbarComponent implements OnInit {
 
   navbarStyle = navbarStyle;
   authState = authState;
+  localization = localization;
   searchValue: string;
 
   constructor(
