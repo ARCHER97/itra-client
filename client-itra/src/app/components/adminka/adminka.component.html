@@ -3,11 +3,7 @@
     <tr>
       <th>#</th>
       <th>Name</th>
-      <th>YearOfBirth</th>
-      <th>Weight</th>
-      <th>Height</th>
-      <th>Sex</th>
-      <th>TypesOfPhotography</th>
+      <th>ColLike</th>
       <th>Rating</th>
       <th>Role</th>
     </tr>
@@ -16,13 +12,9 @@
     <tr *ngFor="let user of users">
       <td>{{user.getIdUser()}}</td>
       <td>{{user.getName()}}</td>
-      <td>{{user.getYearOfBirth()}}</td>
-      <td>{{user.getWeight()}}</td>
-      <td>{{user.getHeight()}}</td>
-      <td>{{user.getSex()}}</td>
-      <td>{{user.getTypesOfPhotography()}}</td>
+      <td>{{user.getColLike()}}</td>
       <td>{{user.getRating()}}</td>
-      <td>{{user.getRole()}}</td>
+      <td>{{user.getRole().getRolename()}}</td>
     </tr>
   </tbody>
 <table>

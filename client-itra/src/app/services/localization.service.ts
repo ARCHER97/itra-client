@@ -21,8 +21,7 @@ export class LocalizationService {
         for(let i = 0; i < res.json().length; i++) {
           local.add(res.json()[i].key, res.json()[i].value);
         }
-        localization.setLocal(local) ;
-        console.log(localization)
+        localization.setLocal(local);
       })
   }
 

@@ -13,7 +13,9 @@ export class AdminkaComponent implements OnInit {
   users: Array<UserInfo>;
   
   constructor(private adminService: AdminService) { 
-    this.users = this.adminService.getUserInfo();
+    this.adminService.getUserInfo().then(res => {
+      this.users = res;
+    });
   }
 
   ngOnInit() {

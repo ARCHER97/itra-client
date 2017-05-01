@@ -158,7 +158,7 @@
     width: 50%;
 }
 
-input {
+.modal-body > input {
     border: dotted 3px lightgray;
     height: 40px;
     width: 70%
@@ -176,4 +176,19 @@ input {
 .btn-default {
     height: 40px;
     width: 20%
+}
+
+.save-icon-td {
+    text-align: right;
+}
+
+.save-icon {
+}
+
+.save-icon:hover {
+    cursor: alias;
+}
+
+select {
+    width: 100%;
 }

@@ -8,6 +8,8 @@ import { ProfileService } from '../../../services/profile.service';
 import { ImageService } from '../../../services/image.service';
 import { CommentService } from '../../../services/comment.service';
 import { PornoRecognitionService } from '../../../services/porno-recognition.service';
+import { SexService } from '../../../services/sex.service';
+import { TypeOfPhotoService } from '../../../services/type-of-photo.service';
 
 import { Profile } from '../../../model/profile';
 import { ImageInfo } from '../../../model/image-info';
@@ -41,17 +43,20 @@ export class ProfileAdminComponent implements OnInit {
   recognitionState = false;
   timer;
 
+  sexList = [];
+  selectSex = this.profile.getName(); 
+  photoList = [];
+  selectPhoto = this.profile.getTypesOfPhotography();
+
   constructor(
     private route: ActivatedRoute,
     private profileService: ProfileService,
     private imageService: ImageService,
     private commentService: CommentService,
-    private pornoRecognitionService: PornoRecognitionService
+    private pornoRecognitionService: PornoRecognitionService,
+    private sexService: SexService,
+    private typeOfPhotoService: TypeOfPhotoService
   ) {
-
-    this.uploader.onAfterAddingAll = (item: any) => {
-       //this.upload();
-    };
     
     this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any): any => {
             let res: any = JSON.parse(response);
@@ -69,7 +74,6 @@ export class ProfileAdminComponent implements OnInit {
               }
             })
 
-            
             return { item, response, status, headers };
     };
 
@@ -77,8 +81,18 @@ export class ProfileAdminComponent implements OnInit {
     this.images.push(new ImageInfo(1,1,'http://res.cloudinary.com/mycloudfortask5/image/upload/v1492878624/imagenotfound_reuccl.png')); 
     profileService.getProfileById(this.route.snapshot.params['id']).then(res => {
       this.profile = res;
+      this.selectSex = this.profile.getSex();
+      this.selectPhoto = this.profile.getTypesOfPhotography();
     });
     this.reloadImages();
+
+    this.sexService.getAllSex().then(res => {
+      this.sexList = res;
+    })
+
+    this.typeOfPhotoService.getAllTypesOfPhoto().then(res => {
+      this.photoList = res;
+    })
   }
 
   reloadImages(){
@@ -167,6 +181,46 @@ export class ProfileAdminComponent implements OnInit {
   preparUploading(state: boolean){
     this.uploader.queue.pop();
     this.recognitionState = state;
+  }
+
+  checkStartSex(sex: any){
+    if(sex == this.profile.getSex()) return true;
+    return false;
+  }
+
+  checkStartPhoto(photo: any){
+    if(photo == this.profile.getTypesOfPhotography()) return true;
+    return false;
+  }
+
+  saveProfile(){
+    let idSex = this.findSexIdInSexList(this.selectSex);
+    let idPhoto = this.findPhotoIdInPhotoList(this.selectPhoto);
+    this.profileService.saveProfile(this.profile, idSex, idPhoto).then(res => {
+      console.log("update: "+res);
+    })
+  }
+
+  findSexIdInSexList(sex: string): number {
+    console.log(sex)
+    let index: number = 0; 
+    this.sexList.forEach(elem => {
+      if(elem.getName() == sex) {
+        index =  elem.getId();
+      }
+    })
+    return index;
+  }
+
+  findPhotoIdInPhotoList(photo: string): number{
+    console.log(photo)
+    let index: number = 0; 
+    this.photoList.forEach(elem => {
+      if(elem.getText() == photo) {
+        index = elem.getId();
+      }
+    })
+    return index;
   }
 
 }

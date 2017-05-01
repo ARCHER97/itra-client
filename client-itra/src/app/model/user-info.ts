@@ -1,13 +1,11 @@
+import { Role } from './role';
+ 
 export class UserInfo {
     constructor(private idUser: number,
                 private name: string,
-                private yearOfBirth: number,
-                private weight: number,
-                private height: number,
-                private sex: string,
-                private typesOfPhotography: string,
-                private rating: number,
-                private role: string){ }
+                private colLike: number,
+                private rating: string,
+                private role: Role){ }
 
     getIdUser() {
         return this.idUser;
@@ -17,21 +15,6 @@ export class UserInfo {
         this.idUser = idUser;
     }
 
-    getRole() {
-        return this.role;
-    }
-
-    setRole(role: string) {
-        this.role = role;
-    }
- 
-    getRating() {
-        return this.rating;
-    }
-
-    setRating(rating: number) {
-        this.rating = rating;
-    }
     getName() {
         return this.name;
     }
@@ -39,45 +22,30 @@ export class UserInfo {
     setName(name: string) {
         this.name = name;
     }
-
-    getYearOfBirth() {
-        return this.yearOfBirth;
+    
+    getColLike() {
+        return this.colLike;
     }
 
-    setYearOfBirth(yearOfBirth: number) {
-        this.yearOfBirth = yearOfBirth;
+    setColLike(colLike: number) {
+        this.colLike = colLike;
     }
 
-    getWeight() {
-        return this.weight;
+    getRating() {
+        return this.rating;
     }
 
-    setWeight(weight: number) {
-        this.weight = weight;
+    setRating(rating: string) {
+        this.rating = rating;
+    }
+    
+
+    getRole(): Role {
+        return this.role;
     }
 
-    getHeight() {
-        return this.height;
-    }
-
-    setHeight(height: number) {
-        this.height = height;
-    }
-
-    getSex() {
-        return this.sex;
-    }
-
-    setSex(sex: string) {
-        this.sex = sex;
-    }
-
-    getTypesOfPhotography() {
-        return this.typesOfPhotography;
-    }
-
-    setTypesOfPhotography(typesOfPhotography: string) {
-        this.typesOfPhotography = typesOfPhotography;
+    setRole(role: Role) {
+        this.role = role;
     }
 
 }

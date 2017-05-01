@@ -28,6 +28,27 @@ export class ProfileService {
       .catch(this.handleError);
   }
 
+  public saveProfile(profile: Profile, idSex: number, idPhoto: number){
+    let body = JSON.stringify(
+            { 
+                idSex: idSex,
+                idTypeOfPhotography: idPhoto,
+                name: profile.getName(),
+                yearOfBirth: profile.getYearOfBirth(),
+                weight: profile.getWeight(),
+                height: profile.getHeight(),
+            }
+        );
+    console.log(body)
+    let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json',
+                               'jwt': localStorage.getItem('jwt')});
+    
+    return this.http.post(this.baseUrl+'update', body, { headers: headers })
+      .toPromise()
+      .then( (res: Response) => { return res.text() });
+  }
+
+
   private handleError (error: any) {
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';

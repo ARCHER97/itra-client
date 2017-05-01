@@ -1,14 +1,27 @@
-<div class="header-profile">
-  <div [ngClass]="'header-image'">
-    <img [src]="images[0].getUrl()" class="img-circle" height="150">
+<div [ngClass]="header-profile">
+  <div [ngClass]="{'header-image': false, 'col-sm-6': true}" style="text-align: center;">
+    <img [src]="images[0].getUrl()" class="img-circle" height="250" width="250">
   </div>
-  <div [ngClass]="'header-info'">
-    {{localization.items.name}}: {{profile.getName()}} <br>
-    {{localization.items.birth}}: {{profile.getYearOfBirth()}} <br>
-    {{localization.items.weight}}: {{profile.getWeight()}} <br>
-    {{localization.items.height}}: {{profile.getHeight()}} <br>
-    {{localization.items.sex}}: {{profile.getSex()}} <br>
-    {{localization.items.photo}}: {{profile.getTypesOfPhotography()}}
+  <div [ngClass]="{'header-info': false, 'col-sm-6': true}">
+    <table class="table">
+      <tr> <td> {{localization.items.name}}: </td><td> <input [(ngModel)]="profile.name" /> </td></tr>
+      <tr> <td> {{localization.items.birth}}: </td><td> <input [(ngModel)]="profile.yearOfBirth" /> </td></tr>
+      <tr> <td> {{localization.items.weight}}: </td><td> <input [(ngModel)]="profile.weight" /> </td></tr>
+      <tr> <td> {{localization.items.height}}: </td><td> <input [(ngModel)]="profile.height" /> </td></tr>
+      <tr> <td> {{localization.items.sex}}: </td><td> 
+        <select [(ngModel)]="selectSex">
+          <option *ngFor="let sex of sexList" [selected]="checkStartSex(sex.getName())" >{{sex.getName()}}</option>
+        </select>  
+      </td></tr>
+      <tr> <td> {{localization.items.photo}}: </td><td> 
+        <select [(ngModel)]="selectPhoto">
+          <option *ngFor="let photo of photoList" [selected]="checkStartPhoto(photo.getText())" >{{photo.getText()}}</option>
+        </select>
+      </td></tr>
+      <tr> <td> </td><td class="save-icon-td"> 
+        <i [ngClass]="['material-icons','save-icon']" (click)="saveProfile()">save</i> 
+      </td></tr>
+    </table>
   </div>
   <div style="clear: both;"></div>
   <div style="margin-left: 20px;">
