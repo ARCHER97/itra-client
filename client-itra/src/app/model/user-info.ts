@@ -1,18 +1,18 @@
 import { Role } from './role';
  
 export class UserInfo {
-    constructor(private idUser: number,
+    constructor(private id: number,
                 private name: string,
                 private colLike: number,
                 private rating: string,
                 private role: Role){ }
 
     getIdUser() {
-        return this.idUser;
+        return this.id;
     }
 
-    setIdUser(idUser: number) {
-        this.idUser = idUser;
+    setIdUser(id: number) {
+        this.id = id;
     }
 
     getName() {

@@ -14,7 +14,22 @@
       <td>{{user.getName()}}</td>
       <td>{{user.getColLike()}}</td>
       <td>{{user.getRating()}}</td>
-      <td>{{user.getRole().getRolename()}}</td>
+      <td>
+        <select [(ngModel)]="user.role.rolename">
+          <option *ngFor="let role of roleList" [selected]="checkStartRole(user, role)">
+            {{role.getRolename()}}
+          </option>
+        </select>
+      </td>
     </tr>
+
+    <tr>
+       <td></td><td></td><td></td><td></td>
+       <td class="save-icon-td"> 
+        <i [ngClass]="['material-icons','save-icon']" (click)="saveRoles()">save</i> 
+      </td>
+    </tr>
+
   </tbody>
 <table>
+

@@ -43,4 +43,17 @@ export class AdminService {
         })
   }
 
+  saveUserRoles(users: Array<UserInfo>): Promise<string> {
+    let body= JSON.stringify({users: users});
+    console.log(body)
+    let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json',
+                                    'jwt': localStorage.getItem('jwt')});
+
+    return this.http.post(this.baseUrlAdmin+'saveRoles', body, { headers: headers })
+        .toPromise()
+        .then(res => {
+          return res.text();
+        })
+  }
+
 }

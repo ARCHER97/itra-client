@@ -1,0 +1,10 @@
+.save-icon-td {
+    text-align: right;
+}
+
+.save-icon {
+}
+
+.save-icon:hover {
+    cursor: alias;
+}

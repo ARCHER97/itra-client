@@ -1,14 +1,16 @@
 <div class="header-profile">
-  <div [ngClass]="'header-image'">
-    <img [src]="images[0].getUrl()" class="img-circle" height="150">
+  <div [ngClass]="['header-image','col-sm-6']">
+    <img [src]="images[0].getUrl()" class="img-circle" height="250" width="250">
   </div>
-  <div [ngClass]="'header-info'">
-    {{localization.items.name}}: {{profile.getName()}} <br>
-    {{localization.items.birth}}: {{profile.getYearOfBirth()}} <br>
-    {{localization.items.weight}}: {{profile.getWeight()}} <br>
-    {{localization.items.height}}: {{profile.getHeight()}} <br>
-    {{localization.items.sex}}: {{profile.getSex()}} <br>
-    {{localization.items.photo}}: {{profile.getTypesOfPhotography()}}
+  <div [ngClass]="['header-info','col-sm-6']">
+    <table class="table">
+      <tr><td>{{localization.items.name}}: </td><td> {{profile.getName()}} </td><tr>
+      <tr><td>{{localization.items.birth}}: </td><td> {{profile.getYearOfBirth()}} </td><tr>
+      <tr><td>{{localization.items.weight}}: </td><td> {{profile.getWeight()}} </td><tr>
+      <tr><td>{{localization.items.height}}: </td><td> {{profile.getHeight()}} </td><tr>
+      <tr><td>{{localization.items.sex}}: </td><td> {{profile.getSex()}} </td><tr>
+      <tr><td>{{localization.items.photo}}: </td><td> {{profile.getTypesOfPhotography()}} </td><tr>
+    </table>
   </div>
   <div style="clear: both;"></div>
   <div style="margin-left: 20px;">

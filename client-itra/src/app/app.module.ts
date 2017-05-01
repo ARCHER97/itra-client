@@ -42,6 +42,7 @@ import { CommentService } from './services/comment.service';
 import { RatingService } from './services/rating.service';
 import { PornoRecognitionService } from './services/porno-recognition.service';
 import { LocalizationService } from './services/localization.service';
+import { RoleService } from './services/role.service';
 
 import { RoutingModule } from './routing/routing.module';
 
@@ -91,7 +92,8 @@ import { RoutingModule } from './routing/routing.module';
     CommentService,
     RatingService,
     PornoRecognitionService,
-    LocalizationService
+    LocalizationService,
+    RoleService
   ],
   bootstrap: [AppComponent]
 })

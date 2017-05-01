@@ -4,12 +4,14 @@
 }
 
 .header-image {
-    margin-left: 20px;
+    /*margin-left: 20px;*/
+    padding: 10px;
+    text-align: center;
     float: left;
 }
 
 .header-info {
-    margin-right: 20px;
+    /*margin-right: 20px;*/
     float: right;
 }
 
